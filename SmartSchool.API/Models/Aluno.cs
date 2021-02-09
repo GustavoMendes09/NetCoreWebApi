@@ -12,5 +12,16 @@ namespace SmartSchool.API.Models
         public string Sobrenome { get; set; }
         public string Telefone { get; set; }
 
+        public Aluno()
+        {
+        }
+
+        public Aluno(int id, string nome, string sobrenome, string telefone)
+        {
+            Id = id;
+            Nome = nome;
+            Sobrenome = sobrenome;
+            Telefone = telefone;
+        }
     }
 }

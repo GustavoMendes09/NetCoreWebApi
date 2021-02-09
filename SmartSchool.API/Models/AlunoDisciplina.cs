@@ -7,5 +7,7 @@ namespace SmartSchool.API.Models
 {
     public class AlunoDisciplina
     {
+        public int AlunoId { get; set; }
+        public int DisciplinaId { get; set; }
     }
 }
