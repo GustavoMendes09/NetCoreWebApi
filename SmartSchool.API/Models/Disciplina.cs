@@ -9,17 +9,22 @@ namespace SmartSchool.API.Models
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public int DisciplinaId { get; set; }
+        public int ProfessorId { get; set; }
+        public Professor professor { get; set; }
+        public IEnumerable<AlunoDisciplina> AlunosDisciplinas { get; set; }
 
         public Disciplina()
         {
         }
-
-        public Disciplina(int id, string nome , int disciplinaId)
+        public Disciplina(int id, string nome, int professorId)
         {
             Id = id;
             Nome = nome;
-            DisciplinaId = disciplinaId;
+            ProfessorId = professorId;
         }
+
+       
+
+     
     }
 }

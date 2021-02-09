@@ -9,7 +9,7 @@ using SmartSchool.API.Data;
 namespace SmartSchool.API.Migrations
 {
     [DbContext(typeof(SmartContext))]
-    [Migration("20210209001644_Init")]
+    [Migration("20210209142628_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -101,6 +101,8 @@ namespace SmartSchool.API.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("AlunoId", "DisciplinaId");
+
+                    b.HasIndex("DisciplinaId");
 
                     b.ToTable("AlunosDisciplinas");
 
@@ -229,13 +231,15 @@ namespace SmartSchool.API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("DisciplinaId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ProfessorId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ProfessorId");
 
                     b.ToTable("Disciplinas");
 
@@ -243,32 +247,32 @@ namespace SmartSchool.API.Migrations
                         new
                         {
                             Id = 1,
-                            DisciplinaId = 1,
-                            Nome = "Matemática"
+                            Nome = "Matemática",
+                            ProfessorId = 1
                         },
                         new
                         {
                             Id = 2,
-                            DisciplinaId = 2,
-                            Nome = "Física"
+                            Nome = "Física",
+                            ProfessorId = 2
                         },
                         new
                         {
                             Id = 3,
-                            DisciplinaId = 3,
-                            Nome = "Português"
+                            Nome = "Português",
+                            ProfessorId = 3
                         },
                         new
                         {
                             Id = 4,
-                            DisciplinaId = 4,
-                            Nome = "Inglês"
+                            Nome = "Inglês",
+                            ProfessorId = 4
                         },
                         new
                         {
                             Id = 5,
-                            DisciplinaId = 5,
-                            Nome = "Programação"
+                            Nome = "Programação",
+                            ProfessorId = 5
                         });
                 });
 
@@ -312,6 +316,30 @@ namespace SmartSchool.API.Migrations
                             Id = 5,
                             Nome = "Alexandre"
                         });
+                });
+
+            modelBuilder.Entity("SmartSchool.API.Models.AlunoDisciplina", b =>
+                {
+                    b.HasOne("SmartSchool.API.Models.Aluno", "Aluno")
+                        .WithMany("AlunosDisciplinas")
+                        .HasForeignKey("AlunoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartSchool.API.Models.Disciplina", "Disciplina")
+                        .WithMany("AlunosDisciplinas")
+                        .HasForeignKey("DisciplinaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SmartSchool.API.Models.Disciplina", b =>
+                {
+                    b.HasOne("SmartSchool.API.Models.Professor", "professor")
+                        .WithMany("Disciplinas")
+                        .HasForeignKey("ProfessorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
