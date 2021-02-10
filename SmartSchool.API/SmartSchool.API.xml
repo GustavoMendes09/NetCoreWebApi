@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SmartSchool.API</name>
+    </assembly>
+    <members>
+        <member name="T:SmartSchool.API.V1.Controllers.AlunoController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:SmartSchool.API.V1.Controllers.AlunoController._repo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SmartSchool.API.V1.Controllers.AlunoController.#ctor(SmartSchool.API.Data.IRepository,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="repo"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:SmartSchool.API.V1.Controllers.AlunoController.Get">
+            <summary>
+            Método responsavel para retornar todos os meus alunos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartSchool.API.V1.Controllers.AlunoController.GetById(System.Int32)">
+            <summary>
+            Método responsavel para retornar apenas um unico Aluno DTO
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartSchool.API.V1.Controllers.AlunoController.Post(SmartSchool.API.V1.Dtos.AlunoRegistrarDto)">
+            <summary>
+            Método responsavel para retornar apenas um aluno por meio do ID
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

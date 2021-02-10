@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SmartSchool.API.Dtos;
+using SmartSchool.API.V1.Dtos;
 using SmartSchool.API.Models;
 using System;
 using System.Collections.Generic;
@@ -23,6 +23,15 @@ namespace SmartSchool.API.Helpers
 
             CreateMap<AlunoDto, Aluno>();
             CreateMap<Aluno, AlunoRegistrarDto>().ReverseMap();
+
+
+            CreateMap<Professor, ProfessorDto>()
+                .ForMember(
+                dest => dest.Nome,
+                opt => opt.MapFrom(src => $"{src.Nome} {src.Sobrenome}"));
+
+            CreateMap<ProfessorDto, Professor>();
+            CreateMap<Professor, ProfessorRegistrarDto>().ReverseMap();
         }
     }
 }

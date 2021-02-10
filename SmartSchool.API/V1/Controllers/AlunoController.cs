@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartSchool.API.Data;
-using SmartSchool.API.Dtos;
+using SmartSchool.API.V1.Dtos;
 using SmartSchool.API.Models;
 using System;
 using System.Collections.Generic;
@@ -11,21 +11,36 @@ using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace SmartSchool.API.Controllers
+namespace SmartSchool.API.V1.Controllers
 {
-    [Route("api/[controller]")]
+    /// <summary>
+    /// 
+    /// </summary>
     [ApiController]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class AlunoController : ControllerBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public readonly IRepository _repo;
         private readonly IMapper _mapper;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="repo"></param>
+        /// <param name="mapper"></param>
         public AlunoController(IRepository repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
         }
-
+        /// <summary>
+        /// Método responsavel para retornar todos os meus alunos
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -33,8 +48,12 @@ namespace SmartSchool.API.Controllers
             
             return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
         }
+        /// <summary>
+        /// Método responsavel para retornar apenas um unico Aluno DTO
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
 
-        //api/aluno/byId
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -46,7 +65,11 @@ namespace SmartSchool.API.Controllers
             return Ok(alunoDto);
         }
 
-
+        /// <summary>
+        /// Método responsavel para retornar apenas um aluno por meio do ID
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post(AlunoRegistrarDto model)
         {
